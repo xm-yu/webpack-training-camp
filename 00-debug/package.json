@@ -1,0 +1,12 @@
+{
+  "name": "00-debug",
+  "version": "1.0.0",
+  "description": "continue step over 执行下个语句 step into 执行下个语句 如果碰上函数 进入函数 step out 跳出函数 restart",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
