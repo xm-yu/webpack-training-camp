@@ -1,24 +1,54 @@
+/*
+ * @Author: yuzhicheng
+ * @Date: 2022-12-07 11:04:59
+ * @Last Modified by: yuzhicheng
+ * @Last Modified time: 2022-12-07 11:43:05
+ */
+
 const webpack = require('webpack');
+const path = require('path');
 
-// webpack({}, (err, stats) => {
-//   if (err || stats.hasErrors()) {
-//   }
+// 测试mode 对构建的影响
 
-//   //
-//   console.log('处理完成');
-// });
+const compilerFn1 = () => {
+  return webpack([
+    {
+      entry: path.resolve(__dirname, '../index.js'),
+      mode: 'production',
+      output: {
+        path: path.resolve(__dirname, '../dist'),
+        filename: 'main.production.js',
+      },
+    },
+    {
+      entry: path.resolve(__dirname, '../index.js'),
+      mode: 'development',
+      output: {
+        path: path.resolve(__dirname, '../dist'),
+        filename: 'main.development.js',
+      },
+    },
+    {
+      entry: path.resolve(__dirname, '../index.js'),
+      output: {
+        path: path.resolve(__dirname, '../dist'),
+        filename: 'main.unknown.js',
+      },
+    },
+  ]);
+};
 
-const compiler = webpack({
-  entry: '../index.js',
-  mode: 'production',
-  output: {
-    filename: 'main.production.js',
-  },
-});
-
-compiler.run((err, stats) => {
-  // console.log(err);
-  compiler.close((closeErr) => {
-    console.log(closeErr);
+const compilerFn2 = () => {
+  return webpack({
+    entry: path.resolve(__dirname, '../index.js'),
+    mode: 'production',
+    output: {
+      path: path.resolve(__dirname, '../dist'),
+      filename: 'main.production.js',
+    },
   });
+};
+
+compilerFn2().run((err, stats) => {
+  console.log(stats);
 });
