@@ -50,5 +50,8 @@ const compilerFn2 = () => {
 };
 
 compilerFn2().run((err, stats) => {
-  console.log(stats);
+  // console.log(stats);
+  // 构建时间计算
+  const diff = stats.endTime - stats.startTime
+  console.log(JSON.stringify(stats.toJson()))
 });
